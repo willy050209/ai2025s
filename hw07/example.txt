@@ -1,0 +1,100 @@
+ This video is intended for those who do not know what functional programming is, with an assumption.
+ In order to be aware of the fact that you don't know what functional programming is,
+ I suppose you must be familiar with some other programming paradigm, that is, you should be familiar with some language similar to one of these.
+ Great. Now, one thing that you'll have probably realized by now is that, despite having a few things in common,
+ these languages also have lots of differences. I'm not talking about differences in syntax, syntax doesn't matter.
+ I'm talking about semantics, the meaning and behavior of your programs.
+ Let's take C. You may know that C doesn't have classes or objects, unlike C++, Java and Python.
+ We say that C is an imperative language, since its instructions are shaped like commands,
+ and thus it is procedural, since it is based on procedure calls, usually improperly referred to as function calls.
+ I'm sure some of you will disagree about the improperly, but I'm also sure that you all know that procedure means different things in different contexts.
+ Sometimes it's used to denote a piece of code that does not return a value, as opposed to a function, which does.
+ In this video, by procedure, I mean any sequence of instructions, which may well contain a return,
+ while a function, in the functional programming sense, is a much more abstract idea, which we will explore later in the video.
+ Java and its classy friends, on the other hand, are called object-oriented languages,
+ but the instructions inside their methods are still commands, so these languages are still based on the same imperative paradigm.
+ One of the things that make functional languages most different from the ones you're probably used to is the fact that the instructions are not commands, but expressions,
+ and a program is not a concatenation of declarations and commands, but a composition of functions.
+ We'll call this property 1.
+ There's also another big difference, the biggest one probably, and I'll introduce it later in the video.
+ When we refer to functions, we mean it in the mathematical sense of maps between sets, such that the output depends solely on the input.
+ A procedure can be a function, for example, this Python procedure is a function that takes an integer and returns an integer.
+ In mathematical notation, we would write this function as f from integers to integers, such that x maps to x squared.
+ This symbol here means maps to, and writing f such that x maps to x squared is equivalent to writing f such that f of x equals x squared.
+ I prefer to use the maps to notation here, since it allows for a better transition later in the video.
+ Let's look at another example that should bring us a little bit closer to the functional paradigm.
+ If we wanted to define a Python function that returns the sum of the squares of two numbers, we could either write the following procedure,
+ or if we wanted to separate the operations, write something like this.
+ Now remember what we said about the functional paradigm, property 1.
+ Rather than using a concatenation of declarations and commands, we want to use function composition, so we can rewrite the function like this.
+ This is closer to satisfying the first property.
+ There is still a problem though.
+ That return thing over there is a command, and one command is enough to make this computation a concatenation of commands, thus violating property 1.
+ We can solve this by introducing a second property of functional programming languages, the presence of anonymous functions.
+ An anonymous function is a function without a name.
+ We will represent anonymous functions, at least for now, by means of the maps to notation.
+ Instead of writing our function like this, we will stop using Python for a while and represent our function in a weird mathematical pseudo-language, like this.
+ Notice that we used the same equal symbol that we might have used to assign the value 3 to an integer variable x.
+ This is a hint to the most important property of all.
+ Anonymous functions can be assigned to variables, the very same way that a number can be assigned to a variable.
+ Numbers can be the input and output of functions, so I guess the next obvious step would be using anonymous functions as the input of other functions, like so, and also as the result of other functions.
+ In this case, the function foo is a function that returns a function, so this returns the function that multiplies the input by 2.
+ Hence the following computes the value 2 times 5.
+ Should we call this property 3? I guess.
+ This is, I think, the most important property of functional programming languages.
+ This may or may not surprise you, but several languages you may already know, like Python and JavaScript, already have the possibility of writing programs that satisfy these three properties.
+ For example, you can write anonymous functions and pass them to other functions in Python by using this syntax, and in JavaScript by using this other syntax.
+ This is because these languages are multi-paradigm languages.
+ But what about purely functional languages?
+ Python and JavaScript allow us to use functional tools while still having the possibility to concatenate commands.
+ How do you do, like, iteration without the ability to concatenate commands?
+ In purely functional languages we don't have iteration, but it's not really necessary.
+ Functional languages use recursion as their equivalent of iteration.
+ As you may know, every while loop can be transformed into a tail recursive function by moving the variables you're checking from the guard to the base case of the recursive function.
+ If you're familiar with recursion and you're using it already in your paradigm of choice, the transition to any functional language will be quite smooth.
+ Another thing you may be asking yourself is what about conditionals?
+ Well, I'm sure you've used some sort of inline conditional already, or ternary operator, so it's basically the same.
+ And this is already most of what you need to know in order to have a vague idea of what functional programming is like.
+ But you want the good stuff, don't you? The lambda juice, the call, the purity, the platonic world of ideas.
+ The Python syntax for anonymous functions contains the word lambda.
+ This is derived from a notation introduced by Alan Turing's scholar friend, Alonzo Church.
+ He wrote the functions I represented with the maps2 with a different notation that features the Greek letter lambda.
+ Actually, this is a bit wrong, since in lambda calculus, which is what we're doing right now, functions have a fixed arity of 1, which means they only have one parameter.
+ Functions with more than one parameter can be simulated by doing something like this.
+ If the previous function was a mathematical notation, a function from the integers times the integers to the integers,
+ which means a function that takes couples of integers as its input and returns a single integer,
+ this new function is from the integers to the set of functions from the integers to the integers.
+ It is quite simple to show that these two functions, called in these two different ways, are in fact equivalent.
+ This property is known as currying.
+ To be even more precise, lambda calculus does not even have an explicit notion of numbers or operations, or booleans, or even recursion.
+ For example, numbers are represented like this.
+ And this thing, called the Y-combinator, makes recursion.
+ Luckily for us, we don't need to use lambda calculus in its original form, just like we don't need to use Turing machines or general recursive functions.
+ In fact, modern functional languages are very rich of features that make them very suitable for some tasks.
+ The functional language I'm most familiar with happens to be OCaml.
+ The most powerful tool in OCaml is one called pattern matching.
+ The simplest way I can describe pattern matching is, it's like a switch, but rather than checking the value of a variable,
+ it checks whether an expression matches a pattern.
+ These, used together with a function, are called pattern matching.
+ In OCaml, it checks whether an expression matches a pattern.
+ These, used together with algebraic data types, makes writing interpreters in OCaml almost trivial.
+ A lot of verification tools and proof assistants are based on functional programming, and some of them are written in OCaml.
+ Apparently, there is also at least one company that uses OCaml for their services.
+ But why am I saying all this? Why do I have to point out that there actually are areas in which functional programming is much more suitable than other paradigms?
+ Well, because you may have heard some people claim that, huh, functional programming is useless.
+ I mean, computation without state is sure elegant, but no collateral effects.
+ How can a programming language be useful if it can't even print a screen?
+ So apparently there is one thing I forgot to mention. Collateral effect.
+ If you cannot concatenate commands, you cannot do something like this.
+ Printing, raising exceptions and other things like these cannot be done in a standard way.
+ There are several ways to have collateral effect in a purely functional language.
+ One of which is... monad.
+ Other languages like OCaml simply include the possibility to have collateral effects by breaking the first property,
+ and allowing the user to concatenate a function of return type unit, which is basically a call to avoid function, to your expression.
+ So basically, no, you do have ways to print in functional languages, even in pure ones.
+ In general, I think it's a good thing that basically all modern languages have functional features.
+ Apart from Java, introducing lambdas in Java was a bit of a mistake, but Java as a whole was a bit of a mistake, so that's another story.
+ The more paradigms a language can support, the more we can adapt it to our needs and use the most appropriate paradigm each time.
+ I hope I gave you a decent overview of the main characteristics of functional languages.
+ Let me know what you think in the comments. See you next time.
+ Thanks for watching!
